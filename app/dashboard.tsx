@@ -338,24 +338,28 @@ export default function Dashboard({ initialReport }: { initialReport: AuditRepor
                 <span className="status-dot" />
                 PAGE QUALITY AUDITOR
               </div>
-              <h1 ref={pageHeading} tabIndex={-1}>
+              <h1
+                ref={pageHeading}
+                tabIndex={-1}
+                className={view === 'overview' ? 'sr-only' : undefined}
+              >
                 {view === 'overview'
-                  ? 'Know what needs attention.'
+                  ? 'Page Quality Auditor'
                   : view === 'findings'
                     ? 'Every signal. All the evidence.'
                     : view === 'plan'
                       ? 'Make the next change count.'
                       : 'Evidence before opinions.'}
               </h1>
-              <p>
-                {view === 'overview'
-                  ? 'A clearer picture of your page. A more confident next step.'
-                  : view === 'findings'
+              {view !== 'overview' && (
+                <p>
+                  {view === 'findings'
                     ? 'Explore what we observed, what needs attention, and what needs a person.'
                     : view === 'plan'
                       ? 'A practical review queue, ordered by priority. Start with the evidence.'
                       : 'Understand what we check, how we score, and where human judgment matters.'}
-              </p>
+                </p>
+              )}
             </div>
             <span className="edition-tag">
               <HeartPulse size={15} />
