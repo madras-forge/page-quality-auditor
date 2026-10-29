@@ -1,5 +1,6 @@
 # Page Quality Auditor
 **Live demo:** [Explore Page Quality Auditor →](https://madras-forge.github.io/page-quality-auditor/)
+
 An evidence-led audit workspace that turns page-quality signals into a prioritised action plan. It brings **technical SEO, trust and credibility, answer readiness, and conversion UX** into one responsive interface.
 
 The interactive demo uses a fictional healthcare page to explore a central question: **what can an automated check establish, and what still needs human judgment?**
