@@ -1,10 +1,25 @@
 # Page Quality Auditor
 
-A polished, evidence-led audit dashboard for technical SEO, trust signals, answer readiness and conversion UX. Built with **Next.js, React and TypeScript** and designed to run entirely on **GitHub Pages**.
+An evidence-led audit workspace that turns page-quality signals into a prioritised action plan. It brings **technical SEO, trust and credibility, answer readiness, and conversion UX** into one responsive interface.
 
-**This is an interactive sample audit, not a live URL scanner.** It uses a fictional healthcare page to demonstrate 24 checks, transparent evidence and prioritised recommendations. No application server, account, database, AI service or API key is required. Node is needed only for development and building the static files.
+The interactive demo uses a fictional healthcare page to explore a central question: **what can an automated check establish, and what still needs human judgment?**
+
+**24 checks · 4 perspectives · Source evidence · Actionable recommendations · Report exports**
 
 [Overview](#desktop-overview) · [Evidence](#findings-and-evidence) · [Action plan](#prioritised-action-plan) · [Methodology](#transparent-methodology) · [Exports](#report-exports) · [Mobile](#mobile-experience)
+
+## The problem
+
+A list of missing tags does not explain whether a healthcare page helps people make informed decisions. At the same time, detecting an author name or a review date cannot establish expertise or medical accuracy.
+
+This project connects implementation checks with editorial review prompts, while making the evidence and limits of each finding visible. The result is a worklist that an SEO manager can discuss with developers, content teams and qualified reviewers.
+
+## The approach
+
+- **Evidence before scores:** every finding includes its source observation, what it means, its limits and a specific next step.
+- **Facts and judgments stay distinct:** 14 deterministic checks affect the implementation score; 8 heuristic signals and 2 manual checks remain human-review tasks.
+- **Priorities support action:** findings carry an explicit priority and effort label, with a dedicated action-plan view.
+- **Detail stays accessible:** the overview supports scanning, while filters and expandable panels reveal the underlying evidence.
 
 ## Screenshots
 
@@ -46,77 +61,33 @@ Responsive navigation and a stacked report layout keep the same evidence availab
 
 [![Mobile audit dashboard](docs/screenshots/06-mobile.jpg)](docs/screenshots/06-mobile.jpg)
 
-## Publish on GitHub.io
+## Technical SEO and product decisions
 
-1. Create a GitHub repository, for example `page-quality-auditor`.
-2. Upload **the contents of this folder** to the repository root, including the hidden `.github` folder, `package.json`, `package-lock.json` and `docs/screenshots`. Do not upload the containing folder, `node_modules`, `.next` or `out`.
-3. Open **Settings → Pages → Build and deployment → Source → GitHub Actions**.
-4. Push to `main`, or open **Actions → Deploy GitHub Pages demo → Run workflow**. If your default branch has a different name, change the workflow’s branch setting.
-5. Open the site URL shown in the completed deployment job.
+| Decision                                  | Reason                                                                                    |
+| ----------------------------------------- | ----------------------------------------------------------------------------------------- |
+| Four audit perspectives                   | Connect search foundations with content accountability, answer structure and user actions |
+| Separate facts, signals and manual review | Avoid treating detectable markup as verified trust or clinical quality                    |
+| Publish the scoring rubric                | Make the number explainable and reproducible                                              |
+| Preserve every finding in exports         | Keep the evidence available when handing work to another team                             |
+| Use a fictional healthcare fixture        | Demonstrate realistic gaps without presenting an unreviewed rating of a real provider     |
+| Deliver a static application              | Keep the portfolio easy to explore without sign-in or external services                   |
 
-The workflow tests, builds, verifies and publishes the static `out/` directory. It detects the correct path for both `username.github.io` and `username.github.io/repository-name/`, including configured custom domains. It uses GitHub’s built-in token. No personal access token is required; normal GitHub Pages availability and repository permissions apply.
+## Built with
 
-This repository package has not been published to a GitHub account yet.
+**Next.js · React · TypeScript · CSS · Cheerio · Vitest · GitHub Actions**
 
-## Run locally
+The analysis module evaluates the HTML fixture during the static build. The React interface handles filtering, evidence disclosures, navigation, sample reset and report downloads in the browser. GitHub Pages serves the exported application.
 
-Use Node 24 (or Node 22.12+) and npm:
+## Verification
 
-```sh
-npm ci
-npm run dev
-```
+Eight automated analysis/export tests cover fixture findings, scoring, unknown-state handling, labels, title extraction and safe Markdown export. Static-output checks verify repository-path assets, the report structure and all six README screenshots. Browser checks cover filtering, evidence, navigation, reset and JSON downloads.
 
-Open <http://127.0.0.1:3000>. The local development preview is optional; the published site serves static files only.
+[Verification details](docs/VALIDATION.md)
 
-## Build and check
+## Scope
 
-```sh
-npm test
-npm run typecheck
-npm run build
-npm run verify:pages
-```
+This is an interactive sample audit with a healthcare profile; live URL scanning is outside this edition. The implementation score describes the project’s markup checks. Clinical accuracy, genuine credentials, accessibility conformance and conversion effectiveness require separate review. The project does not claim measured ranking or business uplift.
 
-To preview the export locally:
+## Further reading
 
-```sh
-python3 -m http.server 4173 --bind 127.0.0.1 --directory out
-```
-
-Open <http://127.0.0.1:4173>. For a repository-path build, use `PAGES_BASE_PATH=/repository-name npm run build`; the resulting files expect that path. GitHub Actions supplies it automatically.
-
-## What the demo includes
-
-- **24 checks:** 14 deterministic, 8 heuristic signals, and 2 manual-review checks.
-- Search and category/method/status filters, expandable evidence, an action plan and methodology.
-- An implementation score based only on deterministic checks; unknown results reduce coverage.
-- Browser-local sample reset, JSON/Markdown downloads and a full print layout.
-- Responsive navigation, semantic labels, keyboard controls, focus indicators and reduced-motion support.
-- A fictional healthcare profile. No real provider has been assessed or rated.
-
-## Project structure
-
-```text
-app/                  React dashboard, styling and static page
-lib/analyze.ts        Independent HTML checks and scoring
-lib/demo.ts           Fictional source fixture, analysed during the build
-lib/export.ts         Portable Markdown report
-lib/types.ts          Report contract and category definitions
-scripts/              Static build and output verification
-tests/               Analysis, scoring and export regression fixtures
-docs/screenshots/    Real screenshots embedded in this README
-docs/RUBRIC.md       Exact rules and applicability caveats
-docs/VALIDATION.md   Verification results and limits
-.github/workflows/    Checks and GitHub Pages deployment
-```
-
-## Scope and limitations
-
-The score describes markup implementation under this project’s rubric. It is not a Google E-E-A-T score, clinical-quality rating, ranking prediction or AI-citation guarantee. Credentials, clinical accuracy, source quality, rendered accessibility and conversion effectiveness require human review. Full WCAG conformance and complete print-to-PDF pagination have not been certified.
-
-The app does not fetch websites, execute source-page scripts, submit forms, store reports or use analytics. Sample data stays in tab memory; exports are saved on the visitor’s device. GitHub manages its own hosting access logs.
-
-[Read the rubric](docs/RUBRIC.md) · [See verification results](docs/VALIDATION.md)
-
-Reference guidance: [GitHub Pages](https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages), [Next.js static exports](https://nextjs.org/docs/app/guides/static-exports), [Google people-first content](https://developers.google.com/search/docs/fundamentals/creating-helpful-content) and [W3C form labels](https://www.w3.org/WAI/tutorials/forms/labels/).
+[Scoring rubric and check definitions](docs/RUBRIC.md) · [Development and deployment guide](docs/SETUP.md)

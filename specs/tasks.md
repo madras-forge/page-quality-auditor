@@ -7,3 +7,5 @@
 - [x] Capture and inspect multiple current screenshots.
 - [x] Embed screenshots in README and verify every linked image.
 - [x] Deliver a clean GitHub repository archive.
+
+- [x] Refocus README on the portfolio project; move publishing and local setup instructions to docs/SETUP.md.
